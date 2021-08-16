@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './store'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/style/util.scss';
+import './assets/style/style.scss';
 
 const renderApp = () => {
   ReactDOM.render(
