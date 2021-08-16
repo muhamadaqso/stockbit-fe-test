@@ -5,6 +5,6 @@ module.exports = {
   getMovies
 }
 
-function getMovies (movieTitle) {
-  return axios.get(`${apiUrl}?s=${movieTitle}&r=json&apikey=${apiKey}`)
+function getMovies (movieTitle, moviePage) {
+  return axios.get(`${apiUrl}?s=${movieTitle}&r=json&page=${moviePage}&apikey=${apiKey}`)
 }

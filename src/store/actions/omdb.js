@@ -8,8 +8,8 @@ const receiveMovies = (movies) => {
   }
 }
 
-const fetchMovies = (search) => (dispatch) => {
-  return getMovies(search)
+const fetchMovies = (search, page) => (dispatch) => {
+  return getMovies(search, page)
     .then(json => dispatch(receiveMovies(json)))
 }
 
