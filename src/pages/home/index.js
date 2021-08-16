@@ -24,6 +24,12 @@ class Home extends Component {
         return(
             <div className="home-page mt-5">
                 <div className="container">
+                        <div className="row mb-3">
+                            <div className='col-12'>
+                                <h3 className="title-border">Movie List</h3>
+                            </div>
+                        </div>
+
                         <CardItem movies={movies} />
                 </div>
             </div>
