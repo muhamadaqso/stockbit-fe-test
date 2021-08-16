@@ -16,6 +16,7 @@ class Home extends Component {
             moviesData: [],
             isFetching: true,
             isResponse: true,
+            modalImg: ''
         }
       }
 
@@ -51,18 +52,20 @@ class Home extends Component {
                     });
                 }
                 this.setState({isFetching: false, isResponse : Boolean(res.movies.data.Response)});
-                console.log(this.state.moviesData, 'asdf')
             }
         });
 
       }
 
 
+
     render() {
     const notFoundMessage = () => <div className="alert alert-warning" role="alert">Oops... Movie Not Found!</div>
-    const movies = path(['Movies','movies','data','Search'],this.props)
-    const {moviesData, isFetching} = this.state
-    // const [img, setImg] = useState('');
+    const {moviesData, modalImg} = this.state
+
+    const handleChildClick = (val) => { 
+        this.setState({modalImg : val});
+      };
 
         return(
             <div className="home-page mt-5 mb-5 pb-5" id="homePage">
@@ -75,10 +78,10 @@ class Home extends Component {
 
                         <div className="row">
                             {moviesData.length > 0 && moviesData.map((movies, idx) => (
-                                <CardItem key={idx} {...movies} />
+                                <CardItem key={idx} {...movies} showImg={handleChildClick}  />
                             ))}
 
-                            {/* <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div className="modal-dialog">
                                     <div className="modal-content">
                                     <div className="modal-header">
@@ -86,11 +89,12 @@ class Home extends Component {
                                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div className="modal-body">
-                                        <img className="w-100" src={img && img!== 'N/A'?img:emptyImg} alt="detail image" />
+                                        <img className="w-100" 
+                                        src={modalImg && modalImg!== 'N/A'?modalImg:emptyImg} alt="detail image" />
                                     </div>
                                     </div>
                                 </div>
-                            </div> */}
+                            </div>
 
                             <div className='col-12'>
                                 {path(['Movies','movies','data','Response'],this.props) === "False" 
