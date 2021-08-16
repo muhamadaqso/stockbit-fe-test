@@ -7,7 +7,7 @@ export default ({movies}) => {
             {movies ?
                 map(movie => (
 
-                <div className="col-lg-3 col-md-4 mb-3 card-item" >
+                <div key={movie.imdbID} className="col-lg-3 col-md-4 mb-3 card-item" >
                     <div className="card-content cursor-pointer p-3 shadow-sm">
                         <strong className="type-badge">{movie.Type}</strong>
                         <img className="w-100" src={movie.Poster} alt={movie.Title} />

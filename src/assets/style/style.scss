@@ -11,3 +11,20 @@
         object-fit: cover;
     }
 }
+
+@media (max-width: 768px) {
+    .card-item {
+        img {
+            height: 300px;
+        }
+    }
+}
+
+
+@media (max-width: 500px) {
+    .card-item {
+        img {
+            height: auto;
+        }
+    }
+}
