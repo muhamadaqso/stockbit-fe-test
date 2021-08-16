@@ -1,5 +1,5 @@
 const { RECEIVE_MOVIES } = require('./').constants
-const { getMovies } = require('../../Services/omdb')
+const { getMovies } = require('../../services/omdb')
 
 const receiveMovies = (movies) => {
   return {

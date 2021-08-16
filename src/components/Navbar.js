@@ -5,7 +5,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function NavBar() {
     return (
-        <nav className="navbar navbar-light shadow-sm sticky-top">
+        <nav className="navbar navbar-dark bg-dark shadow-sm sticky-top">
             <div className="container">
                 <a href="/" className="navbar-brand font-weight-semibold" >
                 <img src={singleLogo}  alt="" width="30" height="30" className="d-inline-block align-text-top me-3" />
