@@ -22,7 +22,7 @@ class Home extends Component {
         const movies = path(['Movies','movies','data','Search'],this.props)
 
         return(
-            <div className="home-page">
+            <div className="home-page mt-5">
                 <div className="container">
                         <CardItem movies={movies} />
                 </div>
