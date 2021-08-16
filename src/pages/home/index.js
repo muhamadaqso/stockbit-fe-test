@@ -19,7 +19,10 @@ class Home extends Component {
       }
 
     render() {
-        const movies = path(['Movies','movies','data','Search'],this.props)
+    const notFoundMessage = () => <div class="alert alert-warning" role="alert">
+    Oops... Movie Not Found!
+  </div>
+    const movies = path(['Movies','movies','data','Search'],this.props)
 
         return(
             <div className="home-page mt-5">
@@ -31,6 +34,13 @@ class Home extends Component {
                         </div>
 
                         <CardItem movies={movies} />
+                        <div className="row">
+                            <div className='col-12'>
+                                {path(['Movies','movies','data','Response'],this.props) === "False" 
+                                    ? notFoundMessage()
+                                    : null }
+                            </div>
+                        </div>
                 </div>
             </div>
         )
