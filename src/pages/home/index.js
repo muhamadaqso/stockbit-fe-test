@@ -74,7 +74,11 @@ class Home extends Component {
 
     const handleChildClick = (val) => { 
         this.setState({modalImg : val});
-      };
+    };
+
+    const toDetailClick = (val) => { 
+        this.props.history.push('/movie/'+ val);
+    };
 
         return(
             <div className="home-page mt-5 mb-5 pb-5" id="homePage">
@@ -93,7 +97,7 @@ class Home extends Component {
                             </div>
                         }
                             {moviesData.length > 0 && moviesData.map((movies, idx) => (
-                                <CardItem key={idx} {...movies} showImg={handleChildClick}  />
+                                <CardItem key={idx} {...movies} showImg={handleChildClick} toDetail={toDetailClick}  />
                             ))}
 
                             <div className='col-12'>

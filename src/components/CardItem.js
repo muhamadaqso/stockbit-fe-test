@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import emptyImg from '../assets/img/empty-img.jpeg';
 
-const CardItem = ({Title, Poster, Type, Year, imdbID, showImg}) => {
+const CardItem = ({Title, Poster, Type, Year, imdbID, showImg, toDetail}) => {
 
     return(
             <div key={imdbID} className="col-lg-3 col-md-4 mb-3 card-item" >
@@ -15,6 +15,8 @@ const CardItem = ({Title, Poster, Type, Year, imdbID, showImg}) => {
                         <h6 className="mb-1">{Title.length > 30 ? Title.substring(0,30)+'...' : Title}</h6>
                         <small className="text-muted">{Year}</small>
                     </div>
+                    <button className="mt-3 btn btn-danger w-100"
+                    onClick={() => {toDetail(imdbID)} }>See More</button>
                 </div>
             </div>
     )
