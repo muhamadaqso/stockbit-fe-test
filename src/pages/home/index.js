@@ -67,18 +67,17 @@ class Home extends Component {
       }
 
 
-
     render() {
-    const notFoundMessage = () => <div className="alert alert-warning" role="alert">Oops... Movie Not Found!</div>
-    const {moviesData, modalImg, movieTitle, isSearch, isFetching} = this.state
+        const notFoundMessage = () => <div className="alert alert-warning" role="alert">Oops... Movie Not Found!</div>
+        const {moviesData, modalImg, movieTitle, isSearch, isFetching} = this.state
 
-    const handleChildClick = (val) => { 
-        this.setState({modalImg : val});
-    };
+        const handleChildClick = (val) => { 
+            this.setState({modalImg : val});
+        };
 
-    const toDetailClick = (val) => { 
-        this.props.history.push('/movie/'+ val);
-    };
+        const toDetailClick = (val) => { 
+            this.props.history.push('/movie/'+ val);
+        };
 
         return(
             <div className="home-page mt-5 mb-5 pb-5" id="homePage">
