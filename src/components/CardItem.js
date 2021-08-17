@@ -9,7 +9,7 @@ const CardItem = ({Title, Poster, Type, Year, imdbID, showImg}) => {
                 <div className="card-content cursor-pointer p-3 shadow-sm">
                     <strong className="type-badge">{Type}</strong>
                     <img onClick={() => {showImg(Poster);}} 
-                    data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                    data-bs-toggle="modal" data-bs-target="#ModalGeneral" 
                     className="w-100" src={Poster && Poster !== 'N/A'?Poster:emptyImg} alt={Title} />
                     <div className="mt-2">
                         <h6 className="mb-1">{Title.length > 30 ? Title.substring(0,30)+'...' : Title}</h6>

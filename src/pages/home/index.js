@@ -4,8 +4,8 @@ import { fetchMovies } from '../../store/actions/omdb'
 import { connect } from 'react-redux'
 import { path } from 'ramda'
 import CardItem from '../../components/CardItem';
-import emptyImg from '../../assets/img/empty-img.jpeg';
 import Loading from '../../components/Loading';
+import Modal from '../../components/Modal';
 
 class Home extends Component {
     constructor(props) {
@@ -96,27 +96,15 @@ class Home extends Component {
                                 <CardItem key={idx} {...movies} showImg={handleChildClick}  />
                             ))}
 
-                            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div className="modal-dialog">
-                                    <div className="modal-content">
-                                    <div className="modal-header">
-                                        <h5 className="modal-title" id="exampleModalLabel">Image Detail</h5>
-                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div className="modal-body">
-                                        <img className="w-100" 
-                                        src={modalImg && modalImg!== 'N/A'?modalImg:emptyImg} alt="detail image" />
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div className='col-12'>
                                 {path(['Movies','movies','data','Response'],this.props) === "False" 
                                     ? notFoundMessage()
                                     : null }
                             </div>
                         </div>
+
+                        <Modal data={modalImg} />
+
                 </div>
             </div>
         )
