@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { path } from 'ramda'
 import CardItem from '../../components/CardItem';
 import emptyImg from '../../assets/img/empty-img.jpeg';
+import Loading from '../../components/Loading';
 
 class Home extends Component {
     constructor(props) {
@@ -16,7 +17,8 @@ class Home extends Component {
             moviesData: [],
             isFetching: true,
             isResponse: true,
-            modalImg: ''
+            isSearch: false,
+            modalImg: '',
         }
       }
 
@@ -26,7 +28,15 @@ class Home extends Component {
 
       componentDidMount(){
         document.addEventListener('scroll', this.trackScrolling);
-        this.fetchMoviesData();
+        const queryString = require('query-string');
+        var parsed = queryString.parse(this.props.location.search);
+        if(parsed.search) {
+            this.setState({isSearch : true, movieTitle: parsed.search});
+        }
+        this.setState({isFetching: true});
+        setTimeout(() => {
+            this.fetchMoviesData();
+        }, 500);
       }
 
       componentWillUnmount() {
@@ -42,7 +52,6 @@ class Home extends Component {
       };
 
       fetchMoviesData() {
-        this.setState({isFetching: true});
         this.props.dispatch(fetchMovies(this.state.movieTitle, this.state.moviePage))
         .then(res => {
             if(res.movies) {
@@ -61,7 +70,7 @@ class Home extends Component {
 
     render() {
     const notFoundMessage = () => <div className="alert alert-warning" role="alert">Oops... Movie Not Found!</div>
-    const {moviesData, modalImg} = this.state
+    const {moviesData, modalImg, movieTitle, isSearch, isFetching} = this.state
 
     const handleChildClick = (val) => { 
         this.setState({modalImg : val});
@@ -72,11 +81,17 @@ class Home extends Component {
                 <div className="container">
                         <div className="row mb-3">
                             <div className='col-12'>
-                                <h3 className="title-border">Movie List</h3>
+                                <h3 className="title-border">{isSearch ? 'Result found : ' + movieTitle : 'Movie List '}</h3>
+                                <p></p>
                             </div>
                         </div>
 
                         <div className="row">
+                        {isFetching &&
+                            <div className="col-12">
+                                <Loading />
+                            </div>
+                        }
                             {moviesData.length > 0 && moviesData.map((movies, idx) => (
                                 <CardItem key={idx} {...movies} showImg={handleChildClick}  />
                             ))}
